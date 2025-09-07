@@ -1,3 +1,26 @@
+<!--
+嗨~~ 我猜總有一天你會打開來翻看看這裡的XDD
+該感謝緣分，讓我能有機會重新認識會長大人
+一位經常充滿新奇點子、跑去參加有趣活動的小仙女
+一位嘗過各國料理而對味覺十分講究的美食家
+是一位走路走著就在blue blue裝可愛還會一直炫耀自家超強弟弟的姊姊
+也是一位能夠在遙遠的另一個半球可以猜到我心情的人甚至及時傳一些能讓我笑出來強制我跳出難過狀態的字句
+說真的感覺待在你身邊的人類
+其實應該都挺幸福的吧
+有著很強的共感能力 而對別人也總是超過100分的準備
+跟妳出去玩 還有著一堆酷炫行程可以體驗
+喔對 說真的前陣子被你講一講就超想去美國生活看看了XXDD (不過這我還在觀望就是了)
+好啦 我想說的是感謝今年初能跟你聊上認識、分享生活、分擔情緒
+那肯定也是我今年幸運的一部分!!!這是作為錦鯉會會員的入會獎勵吧XXD
+
+希望你 平安健康 飛黃騰達 幸福快樂!
+祝你生日快樂~
+
+
+PS:
+也很感謝你會等我再慢慢打字(老實說，我有時候打字打了打，看到寫不好又刪的，才會這麼久QoQ，有時候都想直接電話)
+
+-->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -71,7 +94,7 @@
 
 <script>
     const terminal = document.getElementById('terminal');
-    const prompt = `<span class="prompt-user">Jessica@personal_computer</span><span class="prompt-colon">:</span><span class="prompt-dir">~</span><span class="prompt-dollar">$ </span>`;
+    const prompt = `<span class="prompt-user">Eric@personal_computer</span><span class="prompt-colon">:</span><span class="prompt-dir">~</span><span class="prompt-dollar">$ </span>`;
 
     const lines = [
         { text: 'Checking for pending celebrations...', type: 'response', delay: 1500 },
@@ -79,12 +102,14 @@
         { text: 'sudo ./launch_secret_task', type: 'command', delay: 2000 },
         { 
             type: 'password', 
-            prompt: '[sudo] password for guest: ', 
-            value: '123',
+            prompt: '[sudo] password for Eric: ', 
+            value: 'happyiness',
             //MayHappyinessAlwaysBeWithU
+            //因為所有東西都可以被幸福囊括，所以最貪心的願望其實就是這個了XD 直接包一個幸福
             delay: 1500 
         },
         { text: 'Authentication successful. Initializing program...', type: 'response', color: '#8AE234', delay: 1000 },
+        { text: 'Sending message to Jessica...', type: 'response', color: '#8AE234', delay: 1000 }
     ];
 
     const birthdayArt = `<div class="cake"><pre>
@@ -149,7 +174,7 @@
             terminal.appendChild(art);
 
             const finalMessage = document.createElement('p');
-            finalMessage.innerHTML = prompt + '生日快樂！<span class="cursor"></span>';
+            finalMessage.innerHTML = prompt + '祝會長生日快樂！<span class="cursor"></span>';
             terminal.appendChild(finalMessage);
             terminal.scrollTop = terminal.scrollHeight;
         }
