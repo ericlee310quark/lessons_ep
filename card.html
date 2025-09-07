@@ -92,21 +92,22 @@ PS:
 
 <script>
     const terminal = document.getElementById('terminal');
-    const prompt = `<span class="prompt-user">Eric@personal_computer</span><span class="prompt-colon">:</span><span class="prompt-dir">~</span><span class="prompt-dollar">$ </span>`;
+    const prompt = `<span class="prompt-user">(base)User@personal_computer</span><span class="prompt-colon">:</span><span class="prompt-dir">~</span><span class="prompt-dollar">$ </span>`;
 
     const lines = [
-        { text: 'Checking for pending events...', type: 'response', delay: 1500 },
-        { text: 'Found 1 pending event: "Secret Task"', type: 'response', color: '#729FCF', delay: 1000 },
-        { text: 'sudo ./launch_secret_task', type: 'command', delay: 2000 },
+        { text: 'Checking for new message...', type: 'response', delay: 1500 },
+        { text: 'Found 1 unread message: card.bin -> Confidential Message', type: 'response', color: '#729FCF', delay: 1000 },
+        { text: './decode card.bin', type: 'command', delay: 2000 },
         { 
             type: 'password', 
-            prompt: '[sudo] password for Eric: ', 
+            prompt: 'Need password to decode this file: ', 
             value: 'happyiness',
             //MayHappyinessAlwaysBeWithU
             //因為所有東西都可以被幸福囊括，所以最貪心的願望其實就是這個了XD 直接包一個幸福
             delay: 1500 
         },
         { text: 'Authentication successful. Initializing program...', type: 'response', color: '#8AE234', delay: 1000 },
+        { text: 'Decoding card.bin...', type: 'response', color: '#8AE234', delay: 1000 },
         { text: 'Sending message to Jessica...', type: 'response', color: '#8AE234', delay: 1000 }
     ];
 
