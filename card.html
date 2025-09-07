@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+<style>
+    body {
+        background-color: #300A24; 
+        color: #EEEEEE; 
+        font-family: 'Ubuntu Mono', 'Courier New', Courier, monospace;
+        padding: 20px;
+        overflow: hidden;
+    }
+
+    .terminal {
+        border: 2px solid #555;
+        padding: 15px;
+        height: 90vh;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .terminal::-webkit-scrollbar {
+        display: none;
+    }
+
+    p {
+        margin: 0;
+        white-space: pre-wrap;
+        line-height: 1.5;
+    }
+
+    /* Linux 提示符號的顏色 */
+    .prompt-user { color: #8AE234; }
+    .prompt-colon { color: #EEEEEE; }
+    .prompt-dir { color: #729FCF; }
+    .prompt-dollar { color: #EEEEEE; }
+
+    .cursor {
+        display: inline-block;
+        background-color: #EEEEEE;
+        width: 10px;
+        height: 1.2em;
+        animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+        from, to { background-color: transparent }
+        50% { background-color: #EEEEEE; }
+    }
+
+    .cake pre {
+        font-family: inherit;
+        color: #FFF;
+        font-size: 14px;
+        line-height: 1.2;
+        text-align: left;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="terminal" id="terminal">
+    <p>Last login: Sat Sep 7 23:59:00 2025 on tty1</p>
+    <p>Welcome to Ubuntu 25.09.08 LTS (GNU/Linux 5.15.0-52-generic x86_64)</p>
+    <br>
+</div>
+
+<script>
+    const terminal = document.getElementById('terminal');
+    const prompt = `<span class="prompt-user">Jessica@personal_computer</span><span class="prompt-colon">:</span><span class="prompt-dir">~</span><span class="prompt-dollar">$ </span>`;
+
+    const lines = [
+        { text: 'Checking for pending celebrations...', type: 'response', delay: 1500 },
+        { text: 'Found 1 pending event: "Secret Task"', type: 'response', color: '#729FCF', delay: 1000 },
+        { text: 'sudo ./launch_secret_task', type: 'command', delay: 2000 },
+        { 
+            type: 'password', 
+            prompt: '[sudo] password for guest: ', 
+            value: '123',
+            //MayHappyinessAlwaysBeWithU
+            delay: 1500 
+        },
+        { text: 'Authentication successful. Initializing program...', type: 'response', color: '#8AE234', delay: 1000 },
+    ];
+
+    const birthdayArt = `<div class="cake"><pre>
+        iiiiiiiiiiiii
+        |:H:A:P:P:Y:|   
+      __|___________|__
+     |^^^^^^^^^^^^^^^^^|
+     |:B:I:R:T:H:D:A:Y:|
+     |_________________|
+     '"""""""""''"""""""'</pre></div>`;
+
+    let i = 0;
+
+    function typeLine() {
+        if (i < lines.length) {
+            const line = lines[i];
+            const p = document.createElement('p');
+            
+            if (line.color) {
+                p.style.color = line.color;
+            }
+
+            if (line.type === 'command') {
+                p.innerHTML = prompt;
+            }
+            
+            terminal.appendChild(p);
+
+            let charIndex = 0;
+            
+            if (line.type === 'password') {
+                p.innerHTML = line.prompt;
+                const password = line.value;
+                const interval = setInterval(() => {
+                    if (charIndex < password.length) {
+                        p.innerHTML += '*';
+                        charIndex++;
+                    } else {
+                        clearInterval(interval);
+                        i++;
+                        setTimeout(typeLine, line.delay || 500);
+                    }
+                    terminal.scrollTop = terminal.scrollHeight;
+                }, 100);
+            } else {
+
+                const interval = setInterval(() => {
+                    if (charIndex < line.text.length) {
+                        p.innerHTML += line.text.charAt(charIndex);
+                        charIndex++;
+                    } else {
+                        clearInterval(interval);
+                        i++;
+                        setTimeout(typeLine, line.delay || 500);
+                    }
+                    terminal.scrollTop = terminal.scrollHeight;
+                }, 50);
+            }
+        } else {
+            const art = document.createElement('div');
+            art.innerHTML = birthdayArt;
+            terminal.appendChild(art);
+
+            const finalMessage = document.createElement('p');
+            finalMessage.innerHTML = prompt + '生日快樂！<span class="cursor"></span>';
+            terminal.appendChild(finalMessage);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+    }
+
+    setTimeout(typeLine, 1000);
+</script>
+
+</body>
+</html>
